@@ -1,4 +1,5 @@
 import subprocess
+import argparse
 
 def get_unreachable_objects(repo_path="."):
     '''
@@ -119,7 +120,6 @@ def get_blobs_from_tree(repo_path, tree_sha, prefix=""):
 
 
 if __name__ == "__main__":
-    import argparse
 
     parser = argparse.ArgumentParser(description="Detect and display unreachable Git commit contents.")
     parser.add_argument("repo", nargs="?", default=".", help="Path to the Git repository")
@@ -158,4 +158,3 @@ if __name__ == "__main__":
                     if args.content:
                         content_display = get_object_content(args.repo, blob_sha)
                         print(content_display.strip())
-
