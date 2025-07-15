@@ -7,7 +7,7 @@ def get_unreachable_objects(repo_path="."):
 
     try:
         result = subprocess.run(
-            ["git", "fsck", "--unreachable"],
+            ["git", "fsck", "--full", "--no-reflogs"],
             cwd=repo_path,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -17,7 +17,7 @@ def get_unreachable_objects(repo_path="."):
 
         unreachable_objects = []
         for line in result.stdout.splitlines():
-            if line.startswith("unreachable"):
+            if line.startswith("unreachable") or line.startswith("dangling"):
                 parts = line.strip().split()
                 if len(parts) >= 3:
                     obj_type = parts[1]
