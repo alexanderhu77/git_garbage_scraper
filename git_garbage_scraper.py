@@ -120,10 +120,10 @@ def get_blobs_from_tree(repo_path, tree_sha, prefix=""):
 
 if __name__ == "__main__":
     import argparse
-    import re
 
     parser = argparse.ArgumentParser(description="Detect and display unreachable Git commit contents.")
     parser.add_argument("repo", nargs="?", default=".", help="Path to the Git repository")
+    parser.add_argument("-c", "--content", action="store_true", help="Display content of unreachable files")
 
     args = parser.parse_args()
     unreachable = get_unreachable_objects(args.repo)
@@ -140,7 +140,6 @@ if __name__ == "__main__":
 
                 parent_sha = get_commit_parent(args.repo, sha)
                 if parent_sha:
-                    # print(f"Parent commit: {parent_sha}")
                     print("\n--- Diff from parent ---")
                     diff_output = get_diff_between_commits(args.repo, parent_sha, sha)
                     print(diff_output.strip())
@@ -156,6 +155,7 @@ if __name__ == "__main__":
                 blobs = get_blobs_from_tree(args.repo, tree_sha)
                 for file_path, blob_sha in blobs:
                     print(f"File: {file_path}\nBlob SHA: {blob_sha}")
-                    # content = get_object_content(args.repo, blob_sha)
-                    # print(content.strip())
+                    if args.content:
+                        content_display = get_object_content(args.repo, blob_sha)
+                        print(content_display.strip())
 
