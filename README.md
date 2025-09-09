@@ -1,10 +1,10 @@
 # Git Unreachable Objects Scraper
 
-This repository contains two scripts, `git_garbage_scraper.sh` (Bash) and `git_garbage_scraper.py` (Python), designed to detect and display details about unreachable or dangling Git objects (specifically commits) in a Git repository. These scripts help identify commits that are no longer referenced by any branch, tag, or reflog, and provide detailed information such as commit metadata, diffs from parent commits, and associated file contents.
+This repository contains two scripts, `git_unreachable_objects_scraper.sh` (Bash) and `git_unreachable_objects_scraper.py` (Python), designed to detect and display details about unreachable or dangling Git objects (specifically commits) in a Git repository. These scripts help identify commits that are no longer referenced by any branch, tag, or reflog, and provide detailed information such as commit metadata, diffs from parent commits, and associated file contents.
 
 ## Files
 
-### 1. `git_garbage_scraper.sh`
+### 1. `git_unreachable_objects_scraper.sh`
 
 #### Features
 - Detects unreachable or dangling commits
@@ -16,7 +16,7 @@ This repository contains two scripts, `git_garbage_scraper.sh` (Bash) and `git_g
 
 #### Usage
 ```bash
-./git_garbage_scraper.sh [repository_path] [-c | --content]
+./git_unreachable_objects_scraper.sh [repository_path] [-c | --content]
 ```
 - `repository_path`: Path to the Git repository (defaults to the current directory `.`).
 - `-c | --content`: Optional flag to display the content of each file (blob) in the commit's tree.
@@ -24,13 +24,13 @@ This repository contains two scripts, `git_garbage_scraper.sh` (Bash) and `git_g
 #### Example
 ```bash
 # Scan the repository in the working directory
-./git_garbage_scraper.sh
+./git_unreachable_objects_scraper.sh
 
 # Scan a specific repository
-./git_garbage_scraper.sh /path/to/repo
+./git_unreachable_objects_scraper.sh /path/to/repo
 
 # Scan and display file contents
-./git_garbage_scraper.sh /path/to/repo --content
+./git_unreachable_objects_scraper.sh /path/to/repo --content
 ```
 
 #### Output
@@ -44,14 +44,14 @@ This repository contains two scripts, `git_garbage_scraper.sh` (Bash) and `git_g
   - List of files in the commit's tree with their blob SHAs.
   - File contents (if `--content` is specified).
 
-### 2. `git_garbage_scraper.py`
+### 2. `git_unreachable_objects_scraper.py`
 A script that performs the same functionality as the Bash script, but implemented using Python
 
 #### Features
 - Similar to the Bash script, it detects unreachable or dangling commits
 - Displays commit metadata, diffs from parent commits, and lists files in the commit's tree.
 - Optionally shows file contents with the `-c` or `--content` flag.
-- Increased error handling compared to the Bash script
+- **Increased error handling compared to the Bash script**
 
 #### Requirements
 - Python 3.x
@@ -59,7 +59,7 @@ A script that performs the same functionality as the Bash script, but implemente
 
 #### Usage
 ```bash
-python3 git_garbage_scraper.py [repository_path] [-c | --content]
+python3 git_unreachable_objects_scraper.py [repository_path] [-c | --content]
 ```
 - `repository_path`: Path to the Git repository (defaults to the current directory `.`).
 - `-c | --content`: Optional flag to display the content of each file (blob) in the commit's tree.
@@ -67,13 +67,13 @@ python3 git_garbage_scraper.py [repository_path] [-c | --content]
 #### Example
 ```bash
 # Scan the repository in the working directory
-python3 git_garbage_scraper.py
+python3 git_unreachable_objects_scraper.py
 
 # Scan a specific repository
-python3 git_garbage_scraper.py /path/to/repo
+python3 git_unreachable_objects_scraper.py /path/to/repo
 
 # Scan and display file contents
-python3 git_garbage_scraper.py /path/to/repo --content
+python3 git_unreachable_objects_scraper.py /path/to/repo --content
 ```
 
 #### Output
